@@ -1,4 +1,4 @@
-package com.kevharv.java.rest_demo;
+package com.kevharv.java.rest_demo.Employee;
 
 import java.util.Objects;
 
@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
+public
 class Employee {
     private @Id @GeneratedValue long id;
     private String firstName;
@@ -16,7 +17,7 @@ class Employee {
     Employee() {
     }
 
-    Employee(String firstName, String lastName, String role) {
+    public Employee(String firstName, String lastName, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;

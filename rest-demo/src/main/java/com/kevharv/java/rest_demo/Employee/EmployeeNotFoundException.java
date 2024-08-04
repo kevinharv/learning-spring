@@ -1,4 +1,4 @@
-package com.kevharv.java.rest_demo;
+package com.kevharv.java.rest_demo.Employee;
 
 public class EmployeeNotFoundException extends RuntimeException {
     EmployeeNotFoundException(Long id) {

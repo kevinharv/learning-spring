@@ -1,4 +1,4 @@
-package com.kevharv.java.rest_demo;
+package com.kevharv.java.rest_demo.Employee;
 
 import java.util.List;
 import java.util.stream.Collectors;
