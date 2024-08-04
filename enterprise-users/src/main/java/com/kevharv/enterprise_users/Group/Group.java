@@ -15,11 +15,12 @@ import jakarta.persistence.PostUpdate;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "groups")
 public class Group {
-    private @Id @GeneratedValue Long Id;
+    private @Id @GeneratedValue(strategy=GenerationType.AUTO) Long Id;
     private String name;
     private String description;
     // AD info?
@@ -37,6 +38,14 @@ public class Group {
         this.name = name;
     }
 
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
 
     public String getName() {
         return this.name;

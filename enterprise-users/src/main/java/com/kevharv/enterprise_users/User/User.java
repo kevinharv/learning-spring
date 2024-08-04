@@ -17,11 +17,12 @@ import jakarta.persistence.PostUpdate;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name="users")
 public class User {
-    private @Id @GeneratedValue Long Id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long Id;
     private String employeeId;
     private String firstName;
     private String middleName;

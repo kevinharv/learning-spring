@@ -1,0 +1,22 @@
+---
+services:
+  database:
+    image: postgres:16
+    container_name: user-db
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: user-service
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "idm"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s 
+
+volumes:
+  dbdata:
