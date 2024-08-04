@@ -7,8 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.kevharv.enterprise_users.User.User;
 import com.kevharv.enterprise_users.User.UserRepository;
+import com.kevharv.enterprise_users.Group.Group;
+import com.kevharv.enterprise_users.Group.GroupRepository;
+import com.kevharv.enterprise_users.User.User;
 
 @SpringBootApplication
 public class EnterpriseUsersApplication {
@@ -20,14 +22,17 @@ public class EnterpriseUsersApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(UserRepository userRepository) {
+	public CommandLineRunner demo(UserRepository userRepository, GroupRepository groupRepository) {
 		return (args) -> {
-			userRepository.save(new User("1"));
-			userRepository.save(new User("2"));
-			userRepository.save(new User("3"));
-			userRepository.save(new User("4"));
-			userRepository.save(new User("5"));
 
+			Group adminGroup = new Group("Administrative Users");
+			Group dbgroup = groupRepository.save(adminGroup);
+
+			User adminUser = new User("123");
+			User dbUser = userRepository.save(adminUser);
+
+			dbUser.addGroup(dbgroup);
+			userRepository.save(dbUser);
 
 			log.info("=== FINDING ALL USERS ===");
 			userRepository.findAll().forEach(user -> {
