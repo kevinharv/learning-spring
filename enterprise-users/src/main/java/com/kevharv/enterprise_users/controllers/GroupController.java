@@ -1,4 +1,4 @@
-package com.kevharv.enterprise_users.Group;
+package com.kevharv.enterprise_users.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.kevharv.enterprise_users.exceptions.GroupNotFoundException;
+import com.kevharv.enterprise_users.models.Group;
+import com.kevharv.enterprise_users.repos.GroupRepository;
 
 @RestController
 public class GroupController {

@@ -1,10 +1,8 @@
-package com.kevharv.enterprise_users.Group;
+package com.kevharv.enterprise_users.models;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.kevharv.enterprise_users.User.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

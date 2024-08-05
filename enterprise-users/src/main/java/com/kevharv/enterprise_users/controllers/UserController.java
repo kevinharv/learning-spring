@@ -1,4 +1,4 @@
-package com.kevharv.enterprise_users.User;
+package com.kevharv.enterprise_users.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kevharv.enterprise_users.Group.GroupRepository;
-import com.kevharv.enterprise_users.Group.Group;
+import com.kevharv.enterprise_users.exceptions.UserNotFoundException;
+import com.kevharv.enterprise_users.models.Group;
+import com.kevharv.enterprise_users.models.User;
+import com.kevharv.enterprise_users.repos.GroupRepository;
+import com.kevharv.enterprise_users.repos.UserRepository;
 
 @RestController
 public class UserController {

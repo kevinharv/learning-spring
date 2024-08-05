@@ -1,6 +1,8 @@
-package com.kevharv.enterprise_users.Group;
+package com.kevharv.enterprise_users.repos;
 
 import org.springframework.data.repository.CrudRepository;
+
+import com.kevharv.enterprise_users.models.Group;
 
 public interface GroupRepository extends CrudRepository<Group, Long> {
 

@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.kevharv.enterprise_users.User.UserRepository;
-import com.kevharv.enterprise_users.Group.GroupRepository;
+import com.kevharv.enterprise_users.repos.GroupRepository;
+import com.kevharv.enterprise_users.repos.UserRepository;
 
 @SpringBootApplication
 public class EnterpriseUsersApplication {

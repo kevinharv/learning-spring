@@ -1,10 +1,8 @@
-package com.kevharv.enterprise_users.User;
+package com.kevharv.enterprise_users.models;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.kevharv.enterprise_users.Group.Group;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -13,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PostUpdate;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -33,8 +32,16 @@ public class User {
     private String personalEmailAddress;
     private String workPhone;
     private String personalPhone;
+    
     // Linux info
-    // AD info
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "ad_users_join",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "ad_user_id")
+    )
+    private ADUser adUser;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
@@ -178,5 +185,13 @@ public class User {
 
     public void removeGroup(Group group) {
         this.groups.remove(group);
+    }
+
+    public ADUser getAdUser() {
+        return adUser;
+    }
+
+    public void setAdUser(ADUser adUser) {
+        this.adUser = adUser;
     }
 }

@@ -1,4 +1,4 @@
-package com.kevharv.enterprise_users.Group;
+package com.kevharv.enterprise_users.exceptions;
 
 public class GroupNotFoundException extends RuntimeException {
     public GroupNotFoundException(Long id) {
