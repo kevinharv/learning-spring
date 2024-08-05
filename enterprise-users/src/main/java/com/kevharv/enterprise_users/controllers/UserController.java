@@ -20,6 +20,7 @@ import com.kevharv.enterprise_users.models.Group;
 import com.kevharv.enterprise_users.models.User;
 import com.kevharv.enterprise_users.repos.GroupRepository;
 import com.kevharv.enterprise_users.repos.UserRepository;
+import com.kevharv.enterprise_users.Utilities;
 
 @RestController
 public class UserController {
@@ -51,10 +52,9 @@ public class UserController {
 
     @PutMapping("/users/{id}")
     User replaceUser(@PathVariable Long id, @RequestBody User user) {
-        // Ensure user exists - throw otherwise
-        userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-        // (Lazy) replace existing user with specified user
-        return userRepository.save(user);
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        Utilities.copyNonNullProperties(user, existingUser);
+        return userRepository.save(existingUser);
     }
 
     @DeleteMapping("/users/{id}")

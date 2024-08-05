@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kevharv.enterprise_users.Utilities;
 import com.kevharv.enterprise_users.exceptions.GroupNotFoundException;
 import com.kevharv.enterprise_users.models.Group;
 import com.kevharv.enterprise_users.repos.GroupRepository;
@@ -46,10 +47,9 @@ public class GroupController {
 
     @PutMapping("/groups/{id}")
     public Group updateGroup(@RequestBody Group group, @PathVariable Long id) {
-        Group dbGroup = groupRepository.findById(id).orElseThrow(() -> new GroupNotFoundException(id));
-        dbGroup.setDescription(group.getDescription());
-        dbGroup.setName(group.getName());
-        return groupRepository.save(dbGroup);
+        Group existingGroup = groupRepository.findById(id).orElseThrow(() -> new GroupNotFoundException(id));
+        Utilities.copyNonNullProperties(group, existingGroup);
+        return groupRepository.save(existingGroup);
     }
 
     @DeleteMapping("/groups/{id}")
