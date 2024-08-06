@@ -102,7 +102,7 @@ public class User {
     }
 
     public String getDisplayName() {
-        return displayName;
+        return String.format("%s, %s", this.lastName, this.firstName);
     }
 
     public void setDisplayName(String displayName) {
